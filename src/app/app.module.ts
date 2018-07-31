@@ -8,6 +8,7 @@ import {TodoStatsComponent} from './todo-stats/todo-stats.component';
 import {TodoService} from './services/todo.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OthersComponent } from './others/others.component';
+import { RecentTodosComponent } from './recent-todos/recent-todos.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { OthersComponent } from './others/others.component';
     TodoListComponent,
     TodoStatsComponent,
     DashboardComponent,
-    OthersComponent
+    OthersComponent,
+    RecentTodosComponent
   ],
   imports: [
     BrowserModule,

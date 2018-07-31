@@ -1,4 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
+import {Todo} from '../model/Todo';
 
 // The two components we have in this app (TodoList and TodoDashboard) do not have a parent/child
 // relationship. Whilst we can enforce this relationship in this app, there are cases where two
@@ -27,14 +28,15 @@ import {EventEmitter, Injectable} from '@angular/core';
 
 @Injectable()
 export class TodoService {
-  private todos = [];
+  private todos: Todo[] = [];
+
   public todoAdded = new EventEmitter();
   public todoToggled = new EventEmitter();
   public todoRemoved = new EventEmitter();
   public todosCleared = new EventEmitter();
 
   addTodo(title) {
-    const todo = {id: this.todos.length + 1, title: title};
+    const todo = new Todo(this.todos.length + 1, title);
     this.todos.push(todo);
     this.todoAdded.emit(todo);
   }

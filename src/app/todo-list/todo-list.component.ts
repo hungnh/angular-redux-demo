@@ -8,7 +8,7 @@ import {TodoService} from '../services/todo.service';
 })
 export class TodoListComponent {
 
-  constructor(private service: TodoService) {
+  constructor(private todoService: TodoService) {
   }
 
   addTodo(input) {
@@ -16,20 +16,20 @@ export class TodoListComponent {
       return;
     }
 
-    this.service.addTodo(input.value);
+    this.todoService.addTodo(input.value);
 
     input.value = '';
   }
 
   toggleTodo(todo) {
-    this.service.toggleTodo(todo);
+    this.todoService.toggleTodo(todo);
   }
 
   removeTodo(todo) {
-    this.service.removeTodo(todo);
+    this.todoService.removeTodo(todo);
   }
 
   listTodo() {
-    return this.service.getTodos();
+    return this.todoService.getTodos();
   }
 }

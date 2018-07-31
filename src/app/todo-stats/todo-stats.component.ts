@@ -10,30 +10,30 @@ export class TodoStatsComponent {
   todosCount: number;
   lastUpdate: Date;
 
-  constructor(private service: TodoService) {
-    this.todosCount = service.getTodos().length;
+  constructor(private todoService: TodoService) {
+    this.todosCount = todoService.getTodos().length;
 
-    service.todoAdded.subscribe(() => {
+    todoService.todoAdded.subscribe(() => {
       this.todosCount++;
       this.lastUpdate = new Date();
     });
 
-    service.todoRemoved.subscribe(() => {
+    todoService.todoRemoved.subscribe(() => {
       this.todosCount--;
       this.lastUpdate = new Date();
     });
 
-    service.todoToggled.subscribe(() => {
+    todoService.todoToggled.subscribe(() => {
       this.lastUpdate = new Date();
     });
 
-    service.todosCleared.subscribe(() => {
+    todoService.todosCleared.subscribe(() => {
       this.todosCount = 0;
       this.lastUpdate = new Date();
     });
   }
 
   clearTodos() {
-    this.service.clearTodos();
+    this.todoService.clearTodos();
   }
 }

@@ -1,0 +1,12 @@
+<div class="recent-todos">
+  <h3>3 Most Recent Todos</h3>
+
+  <ul *ngIf="recentTodos && recentTodos.length">
+    <li *ngFor="let todo of recentTodos">{{todo.title}}</li>
+  </ul>
+
+  <p *ngIf="!recentTodos || recentTodos.length == 0"
+     style="font-style: italic;">
+    No recent todos to display.
+  </p>
+</div>

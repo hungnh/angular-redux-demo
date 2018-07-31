@@ -7,12 +7,14 @@ import {TodoService} from '../services/todo.service';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
-  // Read the comment in TodoService
+
   constructor(private service: TodoService) {
   }
 
   addTodo(input) {
-    if (!input.value) return;
+    if (!input.value) {
+      return;
+    }
 
     this.service.addTodo(input.value);
 
@@ -25,5 +27,9 @@ export class TodoListComponent {
 
   removeTodo(todo) {
     this.service.removeTodo(todo);
+  }
+
+  listTodo() {
+    return this.service.getTodos();
   }
 }

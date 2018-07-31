@@ -2,25 +2,24 @@ import {Component} from '@angular/core';
 import {TodoService} from '../services/todo.service';
 
 @Component({
-  selector: 'app-todo-dashboard',
-  templateUrl: './todo-dashboard.component.html',
-  styleUrls: ['./todo-dashboard.component.css']
+  selector: 'app-todo-stats',
+  templateUrl: './todo-stats.component.html',
+  styleUrls: ['./todo-stats.component.css']
 })
-export class TodoDashboardComponent {
-  todos: number;
-  lastUpdate;
+export class TodoStatsComponent {
+  todosCount: number;
+  lastUpdate: Date;
 
-  // Read the comment in TodoService
   constructor(private service: TodoService) {
-    this.todos = service.getTodos().length;
+    this.todosCount = service.getTodos().length;
 
     service.todoAdded.subscribe(() => {
-      this.todos++;
+      this.todosCount++;
       this.lastUpdate = new Date();
     });
 
     service.todoRemoved.subscribe(() => {
-      this.todos--;
+      this.todosCount--;
       this.lastUpdate = new Date();
     });
 
@@ -29,7 +28,7 @@ export class TodoDashboardComponent {
     });
 
     service.todosCleared.subscribe(() => {
-      this.todos = 0;
+      this.todosCount = 0;
       this.lastUpdate = new Date();
     });
   }

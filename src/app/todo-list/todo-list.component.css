@@ -1,4 +1,10 @@
+.todo-list {
+  padding: 20px;
+}
 
 .completed {
   text-decoration: line-through;
 }
+ li {
+   padding-bottom: 8px;
+ }

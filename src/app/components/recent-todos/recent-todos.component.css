@@ -1,0 +1,12 @@
+.completed {
+  text-decoration: line-through;
+  color: green;
+}
+
+ul {
+  margin: 0;
+}
+
+li {
+  padding-bottom: 5px;
+}

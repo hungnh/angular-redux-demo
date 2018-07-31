@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Todo} from '../model/Todo';
+import {Todo} from '../models/Todo';
 
 // The two components we have in this app (TodoList and TodoDashboard) do not have a parent/child
 // relationship. Whilst we can enforce this relationship in this app, there are cases where two

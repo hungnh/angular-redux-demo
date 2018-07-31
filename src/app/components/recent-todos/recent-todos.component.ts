@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Todo} from '../model/Todo';
-import {TodoService} from '../services/todo.service';
+import {Todo} from '../../models/Todo';
+import {TodoService} from '../../services/todo.service';
 
 @Component({
   selector: 'app-recent-todos',
@@ -14,10 +14,10 @@ export class RecentTodosComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    this.recentTodos = this.todoService.getTodos().slice(0, 2);
+    this.recentTodos = this.todoService.getTodos().slice(0, 4);
 
     this.todoService.todoAdded.subscribe((todo: Todo) => {
-      this.recentTodos.splice(2, 1);
+      this.recentTodos.splice(4, 1);
       this.recentTodos.unshift(todo);
     });
 
@@ -31,7 +31,7 @@ export class RecentTodosComponent implements OnInit {
     this.todoService.todoToggled.subscribe((todo: Todo) => {
       const idx = this.recentTodos.indexOf(todo);
       if (idx === -1) {
-        this.recentTodos.splice(2, 1);
+        this.recentTodos.splice(4, 1);
         this.recentTodos.unshift(todo);
       } else {
         this.recentTodos.splice(idx, 1);

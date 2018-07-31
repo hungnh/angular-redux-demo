@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TodoService} from '../services/todo.service';
+import {TodoService} from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,14 +11,14 @@ export class TodoListComponent {
   constructor(private todoService: TodoService) {
   }
 
-  addTodo(input) {
-    if (!input.value) {
+  addTodo(titleInput) {
+    if (!titleInput.value) {
       return;
     }
 
-    this.todoService.addTodo(input.value);
+    this.todoService.addTodo(titleInput.value);
 
-    input.value = '';
+    titleInput.value = '';
   }
 
   toggleTodo(todo) {

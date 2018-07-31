@@ -2,7 +2,9 @@
   <h3>3 Most Recent Todos</h3>
 
   <ul *ngIf="recentTodos && recentTodos.length">
-    <li *ngFor="let todo of recentTodos">{{todo.title}}</li>
+    <li *ngFor="let todo of recentTodos">
+      <span [class.completed]="todo.isCompleted">{{todo.title}}</span>
+    </li>
   </ul>
 
   <p *ngIf="!recentTodos || recentTodos.length == 0"

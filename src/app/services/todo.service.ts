@@ -41,8 +41,9 @@ export class TodoService {
     this.todoAdded.emit(todo);
   }
 
-  toggleTodo(todo) {
+  toggleTodo(todo: Todo) {
     todo.isCompleted = !todo.isCompleted;
+    todo.lastUpdate = new Date();
     this.todoToggled.emit(todo);
   }
 

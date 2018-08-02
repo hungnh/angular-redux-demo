@@ -36,7 +36,7 @@ export class TodoService {
   public todosCleared = new EventEmitter();
 
   addTodo(title) {
-    const todo = new Todo(this.todos.length + 1, title);
+    const todo = new Todo(title);
     this.todos.push(todo);
     this.todoAdded.emit(todo);
   }

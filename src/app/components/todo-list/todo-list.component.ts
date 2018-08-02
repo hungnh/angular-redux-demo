@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
 import {TodoService} from '../../services/todo.service';
+import {TodoActions} from '../../actions';
+import {NgRedux, select} from '@angular-redux/store';
+import {Todo} from '../../models/Todo';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,7 +12,9 @@ import {TodoService} from '../../services/todo.service';
 })
 export class TodoListComponent {
 
-  constructor(private todoService: TodoService) {
+  @select('todos') todos$: Observable<Todo[]>;
+
+  constructor(private todoActions: TodoActions) {
   }
 
   addTodo(titleInput) {
@@ -16,20 +22,17 @@ export class TodoListComponent {
       return;
     }
 
-    this.todoService.addTodo(titleInput.value);
+    const todo = new Todo(titleInput.value);
+    this.todoActions.add(todo);
 
     titleInput.value = '';
   }
 
   toggleTodo(todo) {
-    this.todoService.toggleTodo(todo);
+    this.todoActions.toggle(todo);
   }
 
   removeTodo(todo) {
-    this.todoService.removeTodo(todo);
-  }
-
-  listTodo() {
-    return this.todoService.getTodos();
+    this.todoActions.remove(todo);
   }
 }

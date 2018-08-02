@@ -9,6 +9,9 @@ import {TodoService} from './services/todo.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OthersComponent } from './components/others/others.component';
 import { RecentTodosComponent } from './components/recent-todos/recent-todos.component';
+import {NgRedux, NgReduxModule} from '@angular-redux/store';
+import {IAppState, INIT_STATE, rootReducer} from './store';
+import {TodoActions} from './actions';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,15 @@ import { RecentTodosComponent } from './components/recent-todos/recent-todos.com
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgReduxModule
   ],
-  providers: [TodoService],
+  providers: [TodoService, TodoActions],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INIT_STATE);
+  }
 }

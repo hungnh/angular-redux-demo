@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
-import {TodoService} from '../../services/todo.service';
+import {TodoActions} from '../../actions';
+import {Observable} from 'rxjs';
+import {select} from '@angular-redux/store';
+import {Todo} from '../../models/Todo';
 
 @Component({
   selector: 'app-todo-stats',
@@ -7,33 +10,15 @@ import {TodoService} from '../../services/todo.service';
   styleUrls: ['./todo-stats.component.css']
 })
 export class TodoStatsComponent {
-  todosCount: number;
-  lastUpdate: Date;
 
-  constructor(private todoService: TodoService) {
-    this.todosCount = todoService.getTodos().length;
+  @select(s => s.tasking.todos) todos$: Observable<Todo[]>;
+  @select(s => s.tasking.lastUpdate) lastUpdate;
 
-    todoService.todoAdded.subscribe(() => {
-      this.todosCount++;
-      this.lastUpdate = new Date();
-    });
+  constructor(private todoActions: TodoActions) {
 
-    todoService.todoRemoved.subscribe(() => {
-      this.todosCount--;
-      this.lastUpdate = new Date();
-    });
-
-    todoService.todoToggled.subscribe(() => {
-      this.lastUpdate = new Date();
-    });
-
-    todoService.todosCleared.subscribe(() => {
-      this.todosCount = 0;
-      this.lastUpdate = new Date();
-    });
   }
 
   clearTodos() {
-    this.todoService.clearTodos();
+    this.todoActions.clear();
   }
 }

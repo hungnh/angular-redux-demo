@@ -14,24 +14,26 @@ export class TodoActions {
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
-  add(todo: Todo) {
+  add(title: string) {
+    let appState = this.ngRedux.getState().tasking;
+
     this.ngRedux.dispatch({
       type: TodoActions.TODO_ADD,
-      body: todo
+      body: new Todo(appState.todos.length + 1, title)
     });
   }
 
-  remove(todo: Todo) {
+  remove(id: number) {
     this.ngRedux.dispatch({
       type: TodoActions.TODO_REMOVE,
-      body: todo
+      body: {id: id}
     });
   }
 
-  toggle(todo: Todo) {
+  toggle(id: number) {
     this.ngRedux.dispatch({
       type: TodoActions.TODO_TOGGLE,
-      body: todo
+      body: {id: id}
     });
   }
 

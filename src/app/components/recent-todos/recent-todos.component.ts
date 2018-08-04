@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Todo} from '../../models/Todo';
-import {TodoService} from '../../services/todo.service';
+import {Observable} from 'rxjs';
+import {select} from '@angular-redux/store';
 
 @Component({
   selector: 'app-recent-todos',
@@ -9,38 +10,21 @@ import {TodoService} from '../../services/todo.service';
 })
 export class RecentTodosComponent implements OnInit {
 
+  @select(s => s.tasking.todos) todos$: Observable<Todo[]>;
+
   recentTodos: Todo[] = [];
 
-  constructor(private todoService: TodoService) { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.recentTodos = this.todoService.getTodos().slice(0, 4);
+    const compareByUpdatedDateDesc = (t1, t2) => {
+      return t1.updatedDate < t2.updatedDate ? 1 : 0;
+    };
 
-    this.todoService.todoAdded.subscribe((todo: Todo) => {
-      this.recentTodos.splice(4, 1);
-      this.recentTodos.unshift(todo);
-    });
-
-    this.todoService.todoRemoved.subscribe((todo: Todo) => {
-       const idx = this.recentTodos.indexOf(todo);
-       if (idx !== -1) {
-         this.recentTodos.splice(idx, 1);
-       }
-    });
-
-    this.todoService.todoToggled.subscribe((todo: Todo) => {
-      const idx = this.recentTodos.indexOf(todo);
-      if (idx === -1) {
-        this.recentTodos.splice(4, 1);
-        this.recentTodos.unshift(todo);
-      } else {
-        this.recentTodos.splice(idx, 1);
-        this.recentTodos.unshift(todo);
-      }
-    });
-
-    this.todoService.todosCleared.subscribe((todo: Todo) => {
-      this.recentTodos = [];
+    this.todos$.subscribe(todos => {
+      let clonedTodos = Object.assign([], todos);
+      this.recentTodos = clonedTodos.sort(compareByUpdatedDateDesc).slice(0, 4);
     });
   }
 

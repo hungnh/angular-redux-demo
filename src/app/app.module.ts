@@ -5,10 +5,9 @@ import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {TodoListComponent} from './components/todo-list/todo-list.component';
 import {TodoStatsComponent} from './components/todo-stats/todo-stats.component';
-import {TodoService} from './services/todo.service';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { OthersComponent } from './components/others/others.component';
-import { RecentTodosComponent } from './components/recent-todos/recent-todos.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {OthersComponent} from './components/others/others.component';
+import {RecentTodosComponent} from './components/recent-todos/recent-todos.component';
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
 import {IAppState, INIT_STATE, rootReducer} from './store';
 import {TodoActions} from './actions';
@@ -27,7 +26,7 @@ import {TodoActions} from './actions';
     FormsModule,
     NgReduxModule
   ],
-  providers: [TodoService, TodoActions],
+  providers: [TodoActions],
   bootstrap: [AppComponent]
 })
 export class AppModule {

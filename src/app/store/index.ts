@@ -1,15 +1,15 @@
 import {Todo} from '../models/Todo';
 import {combineReducers} from 'redux';
-import {TodoReducer} from './todo.reducer';
+import {ITaskingState, TASKING_INIT_STATE, TaskingReducer} from './todo.store';
 
 export class IAppState {
-  todos: Todo[];
+  tasking: ITaskingState;
 }
 
 export const INIT_STATE: IAppState = {
-  todos: []
+  tasking: TASKING_INIT_STATE
 };
 
 export const rootReducer = combineReducers({
-  todos: TodoReducer
+  tasking: TaskingReducer
 });

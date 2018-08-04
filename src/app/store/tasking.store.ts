@@ -1,5 +1,5 @@
 import {Todo} from '../models/Todo';
-import {ActionWithBody, TodoActions} from '../actions';
+import {ActionWithBody, TaskingActions} from '../actions';
 import {tassign} from 'tassign';
 
 export interface ITaskingState {
@@ -14,13 +14,13 @@ export const TASKING_INIT_STATE: ITaskingState = {
 
 export function TaskingReducer(state: ITaskingState = TASKING_INIT_STATE, action: ActionWithBody): ITaskingState {
   switch (action.type) {
-    case TodoActions.TODO_ADD:
+    case TaskingActions.TODO_ADD:
       return addTodo(state, action);
-    case TodoActions.TODO_REMOVE:
+    case TaskingActions.TODO_REMOVE:
       return removeTodo(state, action);
-    case TodoActions.TODO_TOGGLE:
+    case TaskingActions.TODO_TOGGLE:
       return toggleTodo(state, action);
-    case TodoActions.TODO_CLEAR_ALL:
+    case TaskingActions.TODO_CLEAR_ALL:
       return clearTodo(state, action);
     default:
       return state;

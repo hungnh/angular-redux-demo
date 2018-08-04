@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TodoActions} from '../../actions';
+import {TaskingActions} from '../../actions';
 import {Observable} from 'rxjs';
 import {select} from '@angular-redux/store';
 import {Todo} from '../../models/Todo';
@@ -14,7 +14,7 @@ export class TodoStatsComponent {
   @select(s => s.tasking.todos) todos$: Observable<Todo[]>;
   @select(s => s.tasking.lastUpdate) lastUpdate;
 
-  constructor(private todoActions: TodoActions) {
+  constructor(private todoActions: TaskingActions) {
 
   }
 

@@ -10,7 +10,7 @@ import {OthersComponent} from './components/others/others.component';
 import {RecentTodosComponent} from './components/recent-todos/recent-todos.component';
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
 import {IAppState, INIT_STATE, rootReducer} from './store';
-import {TodoActions} from './actions';
+import {TaskingActions} from './actions';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {TodoActions} from './actions';
     FormsModule,
     NgReduxModule
   ],
-  providers: [TodoActions],
+  providers: [TaskingActions],
   bootstrap: [AppComponent]
 })
 export class AppModule {

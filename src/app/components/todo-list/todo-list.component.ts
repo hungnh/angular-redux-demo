@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TodoActions} from '../../actions';
+import {TaskingActions} from '../../actions';
 import {select} from '@angular-redux/store';
 import {Todo} from '../../models/Todo';
 import {Observable} from 'rxjs';
@@ -13,7 +13,7 @@ export class TodoListComponent {
 
   @select(s => s.tasking.todos) todos$: Observable<Todo[]>;
 
-  constructor(private todoActions: TodoActions) {
+  constructor(private todoActions: TaskingActions) {
   }
 
   addTodo(titleInput) {

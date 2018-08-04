@@ -1,6 +1,5 @@
-import {Todo} from '../models/Todo';
 import {combineReducers} from 'redux';
-import {ITaskingState, TASKING_INIT_STATE, TaskingReducer} from './todo.store';
+import {ITaskingState, TASKING_INIT_STATE, TaskingReducer} from './tasking.store';
 
 export class IAppState {
   tasking: ITaskingState;

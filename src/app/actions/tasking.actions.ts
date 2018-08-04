@@ -4,7 +4,7 @@ import {NgRedux} from '@angular-redux/store';
 import {IAppState} from '../store';
 
 @Injectable()
-export class TodoActions {
+export class TaskingActions {
 
   static TODO_ADD = 'TODO_ADD';
   static TODO_REMOVE = 'TODO_REMOVE';
@@ -18,28 +18,28 @@ export class TodoActions {
     let appState = this.ngRedux.getState().tasking;
 
     this.ngRedux.dispatch({
-      type: TodoActions.TODO_ADD,
+      type: TaskingActions.TODO_ADD,
       body: new Todo(appState.todos.length + 1, title)
     });
   }
 
   remove(id: number) {
     this.ngRedux.dispatch({
-      type: TodoActions.TODO_REMOVE,
+      type: TaskingActions.TODO_REMOVE,
       body: {id: id}
     });
   }
 
   toggle(id: number) {
     this.ngRedux.dispatch({
-      type: TodoActions.TODO_TOGGLE,
+      type: TaskingActions.TODO_TOGGLE,
       body: {id: id}
     });
   }
 
   clear() {
     this.ngRedux.dispatch({
-      type: TodoActions.TODO_CLEAR_ALL
+      type: TaskingActions.TODO_CLEAR_ALL
     });
   }
 }
